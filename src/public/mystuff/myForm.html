@@ -1,0 +1,82 @@
+<!--
+<form    name="myForm" >
+    <p>
+        First name: <input type="text" name="FirstName" ng-model="PD.firstName" required />
+        <span ng-show="myForm.$submitted">
+            <label ng-show="myForm.FirstName.$error.required">First name is required !</label>
+        </span>
+    </p>
+
+    <p>
+        Last name: <input type="text" name="LastName" ng-model="PD.lastName" required />
+        <span ng-show="myForm.LastName.$touched">
+            <label ng-show="myForm.LastName.$error.required">Last name is required !</label>
+        </span>
+    </p>
+
+    <p>
+        Active: <input type="checkbox" name="Active" ng-model="PD.active" required />
+        <label ng-show="PD.active">
+            <input type="text" name="ActiveConfirm" ng-model="PD.activeConfirm" required />
+        </label>
+        <span ng-show="myForm.$submitted">
+            <label ng-show="myForm.ActiveConfirm.$error.required">Active is required !</label>
+        </span>
+    </p>
+    <input type="button" ng-click="Reset(myForm)" value="Reset" />
+    <input type="submit" ng-click="Submit(PD)" value="Submit" />
+</form>
+
+-->
+
+<form  name="myForm" >
+   <!-- <form  name="myForm" ng-submit="myForm.$valid && submit(user)"><center>-->
+    <!--<form  name="myForm" ng-submit= 'ui-sref = "regsuccessState" '><center>-->
+  
+    <table><tr><td></td><td>All fields are required</td></tr>
+    <tr><td>FirstName:</td><td>
+    <input type = "text" ng-model = "user.firstname"  placeholder = "FirstName" name="firstname" required />
+    <span style="color:red" ng-show="myForm.firstname.$touched && myForm.firstname.$error.required">First name is required.</span>
+   </td></tr>
+   <tr><td>LastName:</td><td>
+   <input type="text" ng-model = "user.lastname"  placeholder = "LastName"  name="lastname" required />
+      <span style="color:red" ng-show="myForm.lastname.$touched && myForm.lastname.$error.required">Last name is required.</span> 
+   </td></tr>
+   <tr><td>Email:</td><td>
+   <input  type="email" ng-model = "user.emailid"  name="email" placeholder = "Valid Email address" required/>
+   <span style="color:red" ng-show="(myForm.email.$dirty && myForm.email.$invalid)  || myForm.email.$touched && myForm.email.$error.required ">
+  <span ng-show="myForm.email.$error.required">Email is required.</span>
+  <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+  </span>
+  
+
+   </td></tr>
+   <tr><td>Phone:</td><td>
+   <input  type="tel" ng-model = "user.phone"  
+    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="12" maxlength="12" name="phone" placeholder="999-999-9999" required/>
+   <span style="color:red" ng-show="(myForm.phone.$dirty && myForm.phone.$invalid)  || myForm.phone.$touched && myForm.phone.$error.required">
+    <span style="color:red" ng-show="myForm.phone.$dirty && myForm.phone.$error.pattern ">
+  <span ng-show="myForm.phone.$error.required">Phone is required.</span>
+  <span ng-show="myForm.phone.$error.pattern">format 999-999-9999.</span>
+  </span>
+   </td></tr>
+   <tr><td>Preferred Menu :</td><td>
+   <input  ng-model = "user.prefmenu"  name="menu" placeholder = "Preferred Menu Item" required/> {{menumessage.msg}}
+
+   </td></tr>
+   <tr><td ></td><td>
+  <input type="submit"  ng-disabled=" myForm.$invalid " ng-click="Submit(user)" value="Submit" class="btn btn-primary"/>
+  
+   
+</td></tr>
+</table></center>
+{{message.msg}}{{reguser.lastname}}
+
+<div ng-repeat="items in allmenuitems2 | filter:user.prefmenu | orderBy:'short_name'">
+            <div> {{ items.short_name}} - {{items.name }} </div>    
+</div>
+
+
+</form>
+
+
