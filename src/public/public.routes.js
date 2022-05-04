@@ -20,13 +20,38 @@ function routeConfig ($stateProvider,$locationProvider, $urlRouterProvider) {
       url: '/',
       templateUrl: 'src/public/home/home.html'
     })
-     .state('registration', {
+
+
+    //working one
+    /*
+    .state('registration', {
       url: '/register',
       templateUrl: 'src/public/mystuff/myForm.html',
       controller:'formcontroller'
-     
- 
     })
+    */
+
+    //testing - working
+    
+     .state('registration', {
+      url: '/register',
+      templateUrl: 'src/public/mystuff/myForm.html',
+      controller:'formcontroller',
+      resolve: {
+        reg: ['$stateParams','MenuService', function ($stateParams, MenuService) {
+           reginfo= MenuService.getRegistration();
+           if (Object.keys(reginfo).length === 0){
+              this.self.templateUrl='src/public/mystuff/myForm.html';
+           }else{
+              this.self.templateUrl='src/public/mystuff/registration2.html';
+           }
+           return reginfo;
+        }]
+
+      }
+    })
+    
+
      /*
      .state('myinfo', {
       url: '/myinfo',

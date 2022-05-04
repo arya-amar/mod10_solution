@@ -54,14 +54,18 @@
    <tr><td>Phone:</td><td>
    <input  type="tel" ng-model = "user.phone"  
     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="12" maxlength="12" name="phone" placeholder="999-999-9999" required/>
-   <span style="color:red" ng-show="(myForm.phone.$dirty && myForm.phone.$invalid)  || myForm.phone.$touched && myForm.phone.$error.required">
+   <span style="color:red" ng-show="(myForm.phone.$dirty && myForm.phone.$invalid)  || (myForm.phone.$touched && myForm.phone.$error.required)">
     <span style="color:red" ng-show="myForm.phone.$dirty && myForm.phone.$error.pattern ">
   <span ng-show="myForm.phone.$error.required">Phone is required.</span>
   <span ng-show="myForm.phone.$error.pattern">format 999-999-9999.</span>
   </span>
    </td></tr>
    <tr><td>Preferred Menu :</td><td>
-   <input  ng-model = "user.prefmenu"  name="menu" placeholder = "Preferred Menu Item" required/> {{menumessage.msg}}
+   <input  ng-model = "user.prefmenu"  name="menu" placeholder = "Preferred Menu Item" required
+       ui-validate="{NotValid : '{{isNotValidItem($value)}}' }"/>  
+       <span style="color:red" ng-show="(myForm.menu.$dirty || myForm.menu.$touched) && myForm.menu.$error.required">Menu is required.</span>
+       <span style="color:red" ng-show="myForm.menu.$error.NotValid">Not a valid Menu Choice {{!!form.user.prefmenu.$error.NotValid}}</span>
+    {{menumessage.msg}}
 
    </td></tr>
    <tr><td ></td><td>
@@ -70,11 +74,16 @@
    
 </td></tr>
 </table></center>
-{{message.msg}}{{reguser.lastname}}
+{{reguser.firstname}}&nbsp;{{reguser.lastname}}
+<br>
 
-<div ng-repeat="items in allmenuitems2 | filter:user.prefmenu | orderBy:'short_name'">
+{{message.msg}}
+
+<!--<div ng-repeat="items in allmenuitems2 | filter:user.prefmenu | orderBy:'short_name'">
             <div> {{ items.short_name}} - {{items.name }} </div>    
-</div>
+</div>-->
+
+
 
 
 </form>

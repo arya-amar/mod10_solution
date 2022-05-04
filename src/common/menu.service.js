@@ -13,6 +13,8 @@ function MenuService($http, ApiPath) {
   this.pref={};
   this.allmenuitems2=[];
 
+  
+
   service.message2={msg:""};
 
   service.setMessage=function(amsg){
@@ -47,9 +49,9 @@ function MenuService($http, ApiPath) {
         config.params = {'category': category};
       }
 
-      //return $http.get(ApiPath + '/menu_items.json', config).then(function (response) {
-      return $http.get(ApiPath + '/menu_items/'+category+'.json', config).then(function (response) {
-
+      return $http.get(ApiPath + '/menu_items.json', config).then(function (response) {
+      //return $http.get(ApiPath + '/menu_items/'+category+'.json', config).then(function (response) {
+        console.log(response.data)
         return response.data;
       });
     };
@@ -77,26 +79,10 @@ function MenuService($http, ApiPath) {
 
 */
       service.getAllItems2=function(){
-        var username='aryaamarjit';
-        var password='vyasa001';
-
-        
-
-        var headers = {               
-              'Access-Control-Allow-Origin': "*"
-              }
-                
-          //console.log("categoryid in getItemsforCategories="+categoryid);
-          //const url=ApiPath+"/menu_items.json";
-
           
-
-
-          const url="http://enigmatic-fortress-50268.herokuapp.com/menu_items.json";
+            const url=ApiPath+"/menu_items/json";
           
-          
-          
-          const promise=$http({method: 'GET',url,headers,Accept: 'application/json'}); //http returns a promise
+           promise=$http({method: 'GET',url, Accept: 'application/json'}); //http returns a promise
           console.log("promise in getItemsforCategories");
           //console.log(promise);
 

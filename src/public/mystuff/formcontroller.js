@@ -15,11 +15,31 @@ angular.
         $scope.allmenuitems2=MenuService.getAllItems2();
         console.log("allmenuitems2  in form congtroller");
         console.log($scope.allmenuitems2);
+        $scope.isNotValidItem=function(item){
+            console.log("got to isnotvaliditem");
+            //item=short_name
+            for(var i=0; i<$scope.allmenuitems2.length; i++) {
+                anitem=$scope.allmenuitems2[i];
+                console.log("anitem");
+                console.log(anitem);
+                if(anitem.short_name==item){
+                    console.log("isnotValid inside comparison");
+                    return false;
+                }else{
+                    return false;
+                }
+            }
 
+        }
 
 
         $scope.Submit = function (user) {
             console.log(user);
+            registered=MenuService.getRegistration();
+            if (Object.keys(registered).length > 0){
+                $scope.message["msg"]="You are already registered";
+                return;
+            }
 
             console.log("got to form submit");
             $scope.reguser = angular.copy(user);
@@ -75,7 +95,7 @@ angular.
             }else{
                 
                 MenuService.saveRegistration($scope.reguser,$scope.userpref);
-                $scope.message.msg="Your Preference has been Saved";
+                $scope.message.msg="Registration Successful, Your Preference has been Saved";
             }
             
 

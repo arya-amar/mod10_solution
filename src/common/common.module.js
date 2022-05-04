@@ -3,7 +3,7 @@
 
 angular.module('common', [])
 //.constant('ApiPath', 'https://ychaikin-course5.herokuapp.com')
-//my heroku path that I generated below
+//my heroku path that I generated below see if it works
 .constant('ApiPath', 'https://enigmatic-fortress-50268.herokuapp.com')  //may have to change to https on git
 .config(config);
 

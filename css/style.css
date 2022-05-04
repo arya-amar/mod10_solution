@@ -13,21 +13,19 @@
       button > span {
         color: green;
       }
-      table{
+  table{
         //border: 1px solid;
         align-content: center;
-        margin-left: auto;
+        margin-left: 30px;
         margin-right: auto;
-        align
+        font-weight: bold;
+        font-color: green;
       }
-      table td {
+  table td {
         border-bottom: 1px solid #000;
-
-      }
-      td { 
         padding: 5px;
-     }
-     
+      }
+ 
 
      body {
   font-size: 16px;
