@@ -12,6 +12,8 @@ function MenuService($http, ApiPath) {
   this.userdata={};
   this.pref={};
   this.allmenuitems2=[];
+  this.myinfo=false;
+  this.prefurl="";
 
   
 
@@ -26,11 +28,23 @@ function MenuService($http, ApiPath) {
       return response.data;
     });
   };
-
+  service.isInfo=function(){
+    return this.myinfo;
+  }
+  service.getprefurl=function(){
+      return this.prefurl;
+  }
 
   service.saveRegistration = function (data,pref) {
+      console.log("in save registration");
+      console.log(data);
       this.userdata=data;
       this.pref=pref;
+      this.myinfo=true;
+      var letter=data.prefmenu.charAt(0);
+      console.log("let="+letter);
+      this.prefurl="images/menu/"+letter+"/"+letter+".jpg";
+      console.log("prefurl="+this.prefurl);
     };
 
     service.getRegistration = function () {
@@ -81,7 +95,7 @@ function MenuService($http, ApiPath) {
       service.getAllItems2=function(){
           
             const url=ApiPath+"/menu_items/json";
-          
+          //const url="https://davids-restaurant.herokuapp.com/menu_items.json";
            promise=$http({method: 'GET',url, Accept: 'application/json'}); //http returns a promise
           console.log("promise in getItemsforCategories");
           //console.log(promise);

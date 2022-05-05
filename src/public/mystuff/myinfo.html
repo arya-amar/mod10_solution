@@ -1,8 +1,9 @@
 
-
-<form  ng-controller="aboutController" name="myForm" ><center>
-   <!-- <form  name="myForm" ng-submit="myForm.$valid && submit(user)"><center>-->
-    <!--<form  name="myForm" ng-submit= 'ui-sref = "regsuccessState" '><center>-->
+<div ng-controller="aboutController">
+ <div ng-if="myinfo">
+<form ><center>
+ 
+   
   
     <table><tr><td></td><td><h1> Your Registration Information</h1></td></tr>
     <tr><td>FirstName:</td><td>
@@ -23,17 +24,21 @@
 
    </td></tr>
    <tr><td>Preferred Menu :</td><td>
-   {{info.prefmenu}}
+   Short Name:{{pref.short_name}}
+   Name:{{pref.name}}
+   Description:{{description}}
 
    </td></tr>
-   <tr><td >Favorite Menu Item</td><td>
-  {{pref.id}}-{{pref.short_name}}-{{pref.name}}
-
-
-</td></tr>
+   
 </table></center>
-<img src="/src/images/"+{{menupref}}+"/"+{{menupref}} alt="Your Preffered Menu Item">
+<img src="{{prefurl}}">
 
 </form>
+</div>
 
+ <div ng-if="!myinfo">
+        <h3 class="text-center">Not signed up yet.</h3>
+        <p class="text-center"><a ui-sref="registration">Sign up now!</a></p>
+  </div>
 
+</div>

@@ -10,11 +10,14 @@ angular.
         $scope.reguser = {};
         $scope.userpref={};  //dictionary of menu item that user prefers
         $scope.allmenuitems=[];
+ 
           //info from menuitems that match their menupref
         //MenuService.getAllItems2();
         $scope.allmenuitems2=MenuService.getAllItems2();
         console.log("allmenuitems2  in form congtroller");
         console.log($scope.allmenuitems2);
+        $scope.myinforeg=MenuService.isInfo();
+        /*
         $scope.isNotValidItem=function(item){
             console.log("got to isnotvaliditem");
             //item=short_name
@@ -31,6 +34,16 @@ angular.
             }
 
         }
+        $scope.getState=function(){
+            reginfo= MenuService.getRegistration();
+            gostate='registration';
+            if (Object.keys(reginfo).length > 0){
+              gostate='registration2';
+            }
+            $state.go(gostate, );
+        }*/
+
+ 
 
 
         $scope.Submit = function (user) {
@@ -85,11 +98,12 @@ angular.
                 console.log(anitem);
                 if(anitem.short_name==$scope.reguser.prefmenu){
                     $scope.userpref=anitem;
+
                 }
             }
             console.log("$scope.userpref below");
             console.log($scope.userpref);
-            if (Object.keys($scope.userpref).length === 0){  //empty
+            if (Object.keys($scope.userpref).length === 0){  //dict that stores user pref is empty
 
                 $scope.menumessage.msg="No Such Menu Number Exists";
             }else{

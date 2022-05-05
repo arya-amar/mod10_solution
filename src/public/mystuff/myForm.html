@@ -28,7 +28,7 @@
 </form>
 
 -->
-
+ <div ng-if="!myinforeg">
 <form  name="myForm" >
    <!-- <form  name="myForm" ng-submit="myForm.$valid && submit(user)"><center>-->
     <!--<form  name="myForm" ng-submit= 'ui-sref = "regsuccessState" '><center>-->
@@ -61,13 +61,22 @@
   </span>
    </td></tr>
    <tr><td>Preferred Menu :</td><td>
+   <input  style="text-transform:uppercase" ng-model = "user.prefmenu"  name="menu" placeholder = "Preferred Menu Item" required/>  
+       <span style="color:red" ng-show="(myForm.menu.$dirty || myForm.menu.$touched) && myForm.menu.$error.required">Menu is required.</span>
+      <span style="color:red">{{menumessage.msg}} </span></div>
+    </td></tr>
+   <!--<tr><td>Preferred Menu :</td><td>
    <input  ng-model = "user.prefmenu"  name="menu" placeholder = "Preferred Menu Item" required
        ui-validate="{NotValid : '{{isNotValidItem($value)}}' }"/>  
+       <input  ng-model = "user.prefmenu"  name="menu" placeholder = "Preferred Menu Item" required
+       ng-blur="isNotValidItem(menu)" />  
        <span style="color:red" ng-show="(myForm.menu.$dirty || myForm.menu.$touched) && myForm.menu.$error.required">Menu is required.</span>
        <span style="color:red" ng-show="myForm.menu.$error.NotValid">Not a valid Menu Choice {{!!form.user.prefmenu.$error.NotValid}}</span>
     {{menumessage.msg}}
 
-   </td></tr>
+   </td></tr>-->
+
+
    <tr><td ></td><td>
   <input type="submit"  ng-disabled=" myForm.$invalid " ng-click="Submit(user)" value="Submit" class="btn btn-primary"/>
   
@@ -87,5 +96,11 @@
 
 
 </form>
+</div>
+
+<div ng-if="myinforeg">
+        <h3 class="text-center">You are already Signed Up</h3>
+        <p class="text-center"><a ui-sref="myinfo">Click here to see Your Info</a></p>
+</div>
 
 
