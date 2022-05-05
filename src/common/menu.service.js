@@ -13,7 +13,7 @@ function MenuService($http, ApiPath) {
   this.pref={};
   this.allmenuitems2=[];
   this.myinfo=false;
-  this.prefurl="";
+  this.prefurl="images/menu-tile.jpg";
 
   
 
@@ -24,6 +24,7 @@ function MenuService($http, ApiPath) {
   };
 
   service.getCategories = function () {
+    console.log("got to get categories");
     return $http.get(ApiPath + '/categories.json').then(function (response) {
       return response.data;
     });
@@ -42,9 +43,9 @@ function MenuService($http, ApiPath) {
       this.pref=pref;
       this.myinfo=true;
       var letter=data.prefmenu.charAt(0);
-      console.log("let="+letter);
+      //console.log("let="+letter);
       this.prefurl="images/menu/"+letter+"/"+letter+".jpg";
-      console.log("prefurl="+this.prefurl);
+      //console.log("prefurl="+this.prefurl);
     };
 
     service.getRegistration = function () {
@@ -71,55 +72,34 @@ function MenuService($http, ApiPath) {
     };
 
 
-/*
-    service.getAllMenuItems=function(){
-      var username='aryaamarjit';
-      var password='vyasa001';
-
-
-          //console.log("categoryid in getItemsforCategories="+categoryid);
-          //const url="https://davids-restaurant.herokuapp.com/menu_items.json";
-          const url=ApiPath+"/menu_items/json";
-          
-
-          
-          const promise=$http({method: 'GET',url,Accept: 'application/json'}); //http returns a promise
-          console.log("promise in getItemsforCategories");
-          //console.log(promise);
-
-          return promise;
-
-     };
-
-*/
       service.getAllItems2=function(){
           
-            const url=ApiPath+"/menu_items/json";
+            const url=ApiPath+"/menu_items.json";
           //const url="https://davids-restaurant.herokuapp.com/menu_items.json";
            promise=$http({method: 'GET',url, Accept: 'application/json'}); //http returns a promise
-          console.log("promise in getItemsforCategories");
+          //console.log("promise in getItemsforCategories");
           //console.log(promise);
 
            promise.then((data)=>{
                      
                      //console.log(Object.keys(data));
-                     console.log("data below");
-                     console.log(data);  //data is a list with one item
+                     //console.log("data below");
+                     //console.log(data);  //data is a list with one item
                      datadict=data["data"];
                      items=datadict["menu_items"];
                      for (var i=0;i<items.length;i++){
                          this.allmenuitems2.push(items[i]);
                      }
-                     console.log("All Menu Items inside of service ");
-                     console.log(this.allmenuitems2);
+                     //console.log("All Menu Items inside of service ");
+                     //console.log(this.allmenuitems2);
                      //service.menuitems=$scope.allmenuitems;  //remember to initialize this is service later and not here
               }, (error)=>{
                      console.log("Promise rejected with " + JSON.stringify(error));
               }); //end promise
               
 
-            console.log("All Menu Items inside of service but outside of promise");
-            console.log(this.allmenuitems2);
+            //console.log("All Menu Items inside of service but outside of promise");
+            //console.log(this.allmenuitems2);
             return this.allmenuitems2;
 
      };

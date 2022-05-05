@@ -33,7 +33,7 @@
    <!-- <form  name="myForm" ng-submit="myForm.$valid && submit(user)"><center>-->
     <!--<form  name="myForm" ng-submit= 'ui-sref = "regsuccessState" '><center>-->
   
-    <table><tr><td></td><td>All fields are required</td></tr>
+    <table><tr><td></td><td><h2>All fields are required</h2></td></tr>
     <tr><td>FirstName:</td><td>
     <input type = "text" ng-model = "user.firstname"  placeholder = "FirstName" name="firstname" required />
     <span style="color:red" ng-show="myForm.firstname.$touched && myForm.firstname.$error.required">First name is required.</span>
@@ -61,20 +61,14 @@
   </span>
    </td></tr>
    <tr><td>Preferred Menu :</td><td>
-   <input  style="text-transform:uppercase" ng-model = "user.prefmenu"  name="menu" placeholder = "Preferred Menu Item" required/>  
+   <input  type="text" style="text-transform:uppercase" ng-model = "user.prefmenu"  name="menu" placeholder = "Preferred Menu Item" required ng-blur="validmenu(user.prefmenu)"/>  
        <span style="color:red" ng-show="(myForm.menu.$dirty || myForm.menu.$touched) && myForm.menu.$error.required">Menu is required.</span>
       <span style="color:red">{{menumessage.msg}} </span></div>
+      <span style="color:red" ng-if="!validmenuitem">
+            No such menu number exists
+          </span>
     </td></tr>
-   <!--<tr><td>Preferred Menu :</td><td>
-   <input  ng-model = "user.prefmenu"  name="menu" placeholder = "Preferred Menu Item" required
-       ui-validate="{NotValid : '{{isNotValidItem($value)}}' }"/>  
-       <input  ng-model = "user.prefmenu"  name="menu" placeholder = "Preferred Menu Item" required
-       ng-blur="isNotValidItem(menu)" />  
-       <span style="color:red" ng-show="(myForm.menu.$dirty || myForm.menu.$touched) && myForm.menu.$error.required">Menu is required.</span>
-       <span style="color:red" ng-show="myForm.menu.$error.NotValid">Not a valid Menu Choice {{!!form.user.prefmenu.$error.NotValid}}</span>
-    {{menumessage.msg}}
-
-   </td></tr>-->
+ 
 
 
    <tr><td ></td><td>
@@ -83,7 +77,7 @@
    
 </td></tr>
 </table></center>
-{{reguser.firstname}}&nbsp;{{reguser.lastname}}
+
 <br>
 
 {{message.msg}}
